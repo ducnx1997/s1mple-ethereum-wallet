@@ -1,0 +1,8 @@
+{
+  "name": "s1mple-ethereum-wallet",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
