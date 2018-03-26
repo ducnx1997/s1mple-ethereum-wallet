@@ -4,7 +4,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { SendEthereumPage } from '../pages/send-ethereum/send-ethereum';
+import { InitPage } from '../pages/init/init';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,8 +13,7 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
-
+  rootPage: any;
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
@@ -22,9 +22,14 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'Send Ethereum', component: SendEthereumPage }
     ];
 
+    if (!this.walletInitialized()) {
+      this.rootPage = InitPage;
+    } else {
+      this.rootPage = HomePage;
+    }
   }
 
   initializeApp() {
@@ -40,5 +45,9 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  walletInitialized(): boolean {
+    return localStorage.getItem('wallet') != null;
   }
 }
