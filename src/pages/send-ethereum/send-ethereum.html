@@ -29,6 +29,6 @@
         <ion-input type="text" placeholder="Gas price" name="amount" [(ngModel)]="gasPrice"></ion-input>
       </ion-item>
     </ion-list>
-    <button ion-button block type="submit">Send</button>
+    <button ion-button block [disabled]="sending == true" type="submit">Send</button>
   </form>
 </ion-content>

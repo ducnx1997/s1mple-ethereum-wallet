@@ -19,6 +19,7 @@ import * as Ethereum from 'ethers';
 })
 export class InitPage {
   walletPrivateKey: string;
+  network: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -27,13 +28,16 @@ export class InitPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InitPage');
+    this.network = 'homestead';
+    localStorage.removeItem('wallet');
+    localStorage.removeItem('network');
   }
 
   initializeWallet() {
     try {
-      var wallet = new Ethereum.Wallet(this.walletPrivateKey);
-      console.log(wallet);
+      new Ethereum.Wallet(this.walletPrivateKey);
       localStorage.setItem('wallet', this.walletPrivateKey);
+      localStorage.setItem('network', this.network);
       this.navCtrl.setRoot(HomePage);
     } catch (e) {
       console.log(e);

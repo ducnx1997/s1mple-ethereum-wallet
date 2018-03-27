@@ -21,6 +21,7 @@ export class SendEthereumPage {
   gasLimit: string;
   gasPrice: string;
   wallet: any;
+  sending: boolean;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -33,16 +34,24 @@ export class SendEthereumPage {
 
   sendEthereum() {
     var wallet = new Ethereum.Wallet(localStorage.getItem('wallet'));
-    wallet.provider = Ethereum.providers.getDefaultProvider();
+    wallet.provider = Ethereum.providers.getDefaultProvider(localStorage.getItem('network'));
     var transaction = {
       gasLimit: Ethereum.utils.bigNumberify(this.gasLimit),
       gasPrice: Ethereum.utils.bigNumberify(this.gasPrice),
       to: this.receiver,
       value: Ethereum.utils.parseEther(this.amount)
     };
-    wallet.sendTransaction(transaction).then((transactionHash) => {
-      console.log(transactionHash);
+    this.sending = true;
+    wallet.sendTransaction(transaction).then((tx) => {
+      console.log(tx);
+      this.sending = false;
+      this.toastCtrl.create({
+        message: 'Transaction sent! Hash: ' + tx.hash,
+        duration: 3000,
+        position: 'top'
+      }).present();
     }, (error) => {
+      console.log(error);
       this.toastCtrl.create({
         message: 'Error: ' + error.message,
         duration: 3000,

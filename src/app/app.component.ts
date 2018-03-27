@@ -22,7 +22,8 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'Send Ethereum', component: SendEthereumPage }
+      { title: 'Send Ethereum', component: SendEthereumPage },
+      { title: 'Logout', component: InitPage }
     ];
 
     if (!this.walletInitialized()) {

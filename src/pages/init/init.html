@@ -16,6 +16,13 @@
       <ion-item>
         <ion-input type="text" placeholder="Wallet private key" name="walletPrivateKey" [(ngModel)]="walletPrivateKey"></ion-input>
       </ion-item>
+      <ion-item>
+        <ion-label>Network</ion-label>
+        <ion-select name="network" [(ngModel)]="network">
+          <ion-option value="homestead">Main network</ion-option>
+          <ion-option value="rinkeby">Test network</ion-option>
+        </ion-select>
+      </ion-item>
     </ion-list>
     <button ion-button block type="submit">Initialize wallet</button>
   </form>
