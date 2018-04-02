@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <ion-list no-lines>
-    <ion-item>Wallet address: {{ walletAddress }}</ion-item>
+    <ion-item text-wrap>Wallet address: {{ walletAddress }}</ion-item>
     <ion-item>Wallet balance: <ion-spinner *ngIf="walletBalance == null"></ion-spinner> {{ walletBalance }} ETH</ion-item>
     <ion-item>Transaction count: <ion-spinner *ngIf="txCount == null"></ion-spinner> {{ txCount }} transaction(s)</ion-item>
   </ion-list>

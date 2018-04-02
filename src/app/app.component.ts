@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { SendEthereumPage } from '../pages/send-ethereum/send-ethereum';
 import { InitPage } from '../pages/init/init';
+import { PriceChartPage } from '../pages/price-chart/price-chart';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,6 +24,7 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Send Ethereum', component: SendEthereumPage },
+      { title: 'Price chart', component: PriceChartPage },
       { title: 'Logout', component: InitPage }
     ];
 

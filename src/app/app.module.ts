@@ -6,16 +6,19 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SendEthereumPage } from '../pages/send-ethereum/send-ethereum';
 import { InitPage } from '../pages/init/init';
+import { PriceChartPage } from '../pages/price-chart/price-chart';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { HTTP } from '@ionic-native/http';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     SendEthereumPage,
-    InitPage
+    InitPage,
+    PriceChartPage
   ],
   imports: [
     BrowserModule,
@@ -26,11 +29,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     SendEthereumPage,
-    InitPage
+    InitPage,
+    PriceChartPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
