@@ -13,4 +13,13 @@
     <ion-item>Wallet balance: <ion-spinner *ngIf="walletBalance == null"></ion-spinner> {{ walletBalance }} ETH</ion-item>
     <ion-item>Transaction count: <ion-spinner *ngIf="txCount == null"></ion-spinner> {{ txCount }} transaction(s)</ion-item>
   </ion-list>
+  <ion-item>Transactions History</ion-item>
+  <ion-list>
+    <ion-card *ngFor="let transaction of transactions">
+      <ion-card-header text-warp>Time: {{ transaction.timeStamp}}</ion-card-header>
+      <ion-card-content text-warp>From: {{ transaction.from }}</ion-card-content>
+      <ion-card-content text-warp>To: {{ transaction.to }}</ion-card-content>
+      <ion-card-content text-warp>Value: {{ transaction.value }}</ion-card-content>
+    </ion-card>
+  </ion-list>
 </ion-content>
