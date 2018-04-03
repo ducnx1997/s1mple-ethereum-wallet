@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, transition } from '@angular/core';
 import { NavController } from 'ionic-angular';
 // import { HTTP } from '@ionic-native/http';
 
@@ -28,20 +28,9 @@ export class HomePage {
     wallet.provider.getHistory(this.walletAddress).then((history) => {
       console.log(history);
       this.transactions = history;
+      this.transactions.forEach((transaction) => {
+        transaction.value = Ethereum.utils.formatEther(transaction.value);
+      });
     });
-
-    // this.http.get("http://api.etherscan.io/api?module=account&action=txlist&address=" 
-    // + this.walletAddress 
-    // + "&startblock=0&endblock=99999999&sort=desc&apikey=2S2PRGZE5QGAADAPVER2YHPNGK84Q28NBE",
-    // {}, {}).then(data => {
-    //     console.log(data.status);
-    //     console.log(data.data); // data received by server
-    //     this.transactions = JSON.parse(data.data).result;
-    //     this.transactions.forEach(function(transaction) {
-    //       let day = new Date(transaction.timeStamp * 1000);
-    //       transaction.timeStamp = day.toUTCString();
-    //     })
-    //     console.log(this.transactions);
-    // });
   }
 }
