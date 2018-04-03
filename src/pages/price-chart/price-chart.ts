@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HTTP } from '@ionic-native/http';
+// import { HTTP } from '@ionic-native/http';
+import { HttpClient } from '@angular/common/http';
 import { Chart } from 'chart.js';
 
 /**
@@ -29,29 +30,30 @@ export class PriceChartPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private http: HTTP) {
+    private http: HttpClient) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PriceChartPage');
-    this.http.get("https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD,BTC,EUR", {}, {})
-      .then(data => {
+    this.http.get("https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD,BTC,EUR")
+      .subscribe((data: any) => {
         // console.log(data.status);
         // console.log(data.data); // data received by server
         // console.log(data.headers);
-        this.price = JSON.parse(data.data);
+        this.price = data;
       });
 
     this.historicalPrice = [];
     this.historicalTs = [];
     this.data = [];
 
-    this.http.get("https://min-api.cryptocompare.com/data/histoday?fsym=ETH&tsym=USD&limit=14", {}, {})
-      .then(data => {
+    this.http.get("https://min-api.cryptocompare.com/data/histoday?fsym=ETH&tsym=USD&limit=14")
+      .subscribe((data: any) => {
         // console.log(data.status);
         // console.log(data.data); // data received by server
         // console.log(data.headers);
-        this.data = JSON.parse(data.data)["Data"];
+        console.log(data);
+        this.data = data.Data;
         this.historicalPrice = this.data.map(a => a.close);
         this.historicalTs = this.data.map(a => (new Date(a.time * 1000).getDate()));
         this.highestPrice = Math.max(...this.data.map(a => parseFloat(a.high)));
