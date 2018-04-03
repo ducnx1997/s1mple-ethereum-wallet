@@ -20,13 +20,13 @@
         <ion-input type="text" placeholder="Receiver wallet address" name="receiver" [(ngModel)]="receiver"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="text" placeholder="Amount" name="amount" [(ngModel)]="amount"></ion-input>
+        <ion-input type="text" placeholder="Amount (ETH)" name="amount" [(ngModel)]="amount"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="text" placeholder="Gas limit" name="amount" [(ngModel)]="gasLimit"></ion-input>
+        <ion-input type="text" placeholder="Gas limit (Gas)" name="amount" [(ngModel)]="gasLimit"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="text" placeholder="Gas price" name="amount" [(ngModel)]="gasPrice"></ion-input>
+        <ion-input type="text" placeholder="Gas price (Gwei)" name="amount" [(ngModel)]="gasPrice"></ion-input>
       </ion-item>
     </ion-list>
     <button ion-button block [disabled]="sending == true" type="submit">Send</button>

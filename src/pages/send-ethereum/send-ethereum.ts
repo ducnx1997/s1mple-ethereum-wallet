@@ -37,7 +37,7 @@ export class SendEthereumPage {
     wallet.provider = Ethereum.providers.getDefaultProvider(localStorage.getItem('network'));
     var transaction = {
       gasLimit: Ethereum.utils.bigNumberify(this.gasLimit),
-      gasPrice: Ethereum.utils.bigNumberify(this.gasPrice),
+      gasPrice: Ethereum.utils.parseUnits(this.gasPrice, 'gwei'),
       to: this.receiver,
       value: Ethereum.utils.parseEther(this.amount)
     };
