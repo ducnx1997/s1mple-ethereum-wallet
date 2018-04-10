@@ -18,7 +18,8 @@ import * as Ethereum from 'ethers';
   templateUrl: 'init.html',
 })
 export class InitPage {
-  walletPrivateKey: string;
+  loginData: string;
+  method: string;
   network: string;
 
   constructor(public navCtrl: NavController,
@@ -28,6 +29,7 @@ export class InitPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InitPage');
+    this.method = 'private';
     this.network = 'homestead';
     localStorage.removeItem('wallet');
     localStorage.removeItem('network');
@@ -35,8 +37,14 @@ export class InitPage {
 
   initializeWallet() {
     try {
-      new Ethereum.Wallet(this.walletPrivateKey);
-      localStorage.setItem('wallet', this.walletPrivateKey);
+      if (this.method === 'private') {
+        new Ethereum.Wallet(this.loginData);
+        localStorage.setItem('wallet', this.loginData);
+      } else if (this.method === 'mnemonic') {
+        var wallet = Ethereum.Wallet.fromMnemonic(this.loginData);
+        localStorage.setItem('wallet', wallet.privateKey);
+      }
+
       localStorage.setItem('network', this.network);
       this.navCtrl.setRoot(HomePage);
     } catch (e) {

@@ -1,6 +1,5 @@
-import { Component, transition } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-// import { HTTP } from '@ionic-native/http';
 
 import * as Ethereum from 'ethers';
 
