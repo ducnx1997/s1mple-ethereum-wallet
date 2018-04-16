@@ -89,7 +89,7 @@ export class PriceChartPage {
                       pointRadius: 1,
                       pointHitRadius: 10,
                       data: this.historicalPrice,
-                      spanGaps: true,
+                      spanGaps: true
                   }
               ]
           }

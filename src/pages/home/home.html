@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="my-dark-blue">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -7,18 +7,24 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-list no-lines>
-    <ion-item text-wrap>Wallet address: {{ walletAddress }}</ion-item>
-    <ion-item>Wallet balance: <ion-spinner *ngIf="walletBalance == null"></ion-spinner> {{ walletBalance }} ETH</ion-item>
-  </ion-list>
-  <ion-item>Transactions History</ion-item>
+<ion-content padding class='theme'>
+    <ion-card>
+      <ion-card-header text-center style="color:white">Address</ion-card-header>
+      <ion-card-content color="primary" text-center >{{ walletAddress }}</ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header text-center style="color:white">Wallet balance</ion-card-header>
+        <ion-card-content text-center><ion-spinner *ngIf="walletBalance == null"></ion-spinner> {{ walletBalance }} ETH</ion-card-content>
+      </ion-card>
+  <h1 text-center>Transactions History</h1>
   <ion-list>
     <ion-card *ngFor="let transaction of transactions">
       <!-- <ion-card-header text-warp>Time: {{ transaction.timeStamp}}</ion-card-header> -->
-      <ion-card-content text-warp>From: {{ transaction.from }}</ion-card-content>
-      <ion-card-content text-warp>To: {{ transaction.to }}</ion-card-content>
-      <ion-card-content text-warp>Value: {{ transaction.value }} ETH</ion-card-content>
+      <ion-card-header *ngIf="walletAddress == transaction.from" color="danger">OUT</ion-card-header>
+      <ion-card-header *ngIf="walletAddress !== transaction.from" color="secondary">IN</ion-card-header>
+      <ion-card-content color="primary" *ngIf="walletAddress !== transaction.from" text-warp>From: {{ transaction.from }}</ion-card-content>
+      <ion-card-content color="primary" *ngIf="walletAddress == transaction.from"  text-warp>To: {{ transaction.to }}</ion-card-content>
+      <ion-card-content text-warp>{{ transaction.value }} ETH</ion-card-content>
     </ion-card>
   </ion-list>
 </ion-content>

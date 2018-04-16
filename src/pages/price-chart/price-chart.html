@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="my-dark-blue">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -15,31 +15,30 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="theme">
   <ion-card>
+    <ion-card-header text-center style="color:white">1 ETH =</ion-card-header>
     <ion-card-content>
       <ion-grid>
         <ion-row>
-          <ion-col col-12>1 ETH = </ion-col>  
-          <ion-col col-3></ion-col>
-          <ion-col col-3><ion-spinner *ngIf="price['USD'] == null"></ion-spinner>{{ price['USD'] }} USD</ion-col>
-          <ion-col col-3><ion-spinner *ngIf="price['BTC'] == null"></ion-spinner>{{ price['BTC'] }} BTC</ion-col>
-          <ion-col col-3><ion-spinner *ngIf="price['EUR'] == null"></ion-spinner>{{ price['EUR'] }} EURO</ion-col>
+          <ion-col col-4><ion-spinner *ngIf="price['USD'] == null"></ion-spinner>{{ price['USD'] }} USD</ion-col>
+          <ion-col col-4><ion-spinner *ngIf="price['BTC'] == null"></ion-spinner>{{ price['BTC'] }} BTC</ion-col>
+          <ion-col col-4><ion-spinner *ngIf="price['EUR'] == null"></ion-spinner>{{ price['EUR'] }} EURO</ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
   </ion-card>
   <ion-card>
-    <ion-card-header>
-    </ion-card-header>
     <ion-card-content>
       <canvas #lineCanvas></canvas>
     </ion-card-content>
   </ion-card>
   <ion-card>
       <ion-card-content>
-        <ion-row>Highest: {{ highestPrice }}</ion-row>
-        <ion-row>Lowest: {{ lowestPrice }}</ion-row>
+        <ion-row>
+          <ion-col col-6>Highest: {{ highestPrice }}</ion-col>
+          <ion-col col-6>Lowest: {{ lowestPrice }}</ion-col>
+        </ion-row>
       </ion-card-content>
   </ion-card>
 </ion-content>

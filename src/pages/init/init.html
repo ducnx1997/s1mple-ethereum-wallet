@@ -5,32 +5,31 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
-    <ion-title>Initialize wallet</ion-title>
+  <ion-navbar color="my-dark-blue">
+    <ion-title>Ethereum Wallet</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="theme" >
+  <img src="assets/imgs/ETHEREUM-ICON_Black_small.png">
   <form (ngSubmit)="initializeWallet()">
-    <ion-list>
-      <ion-item>
-        <ion-label>Network</ion-label>
-        <ion-select name="network" [(ngModel)]="network">
-          <ion-option value="homestead">Main network</ion-option>
-          <ion-option value="rinkeby">Test network</ion-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-label>Login method</ion-label>
-        <ion-select name="method" [(ngModel)]="method">
-          <ion-option value="private">Private key</ion-option>
-          <ion-option value="mnemonic">Mnemonic phrase</ion-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
+      <ion-item color="my-blue">
         <ion-input type="text" placeholder="{{method === 'private' ? 'Wallet private key' : 'Mnemonic phrase'}}" name="loginData" [(ngModel)]="loginData"></ion-input>
       </ion-item>
-    </ion-list>
-    <button ion-button block type="submit">Initialize wallet</button>
+      <ion-item no-lines color="my-blue">
+          <!-- <ion-label color="primary">Network:</ion-label> -->
+        <ion-select name="network" [(ngModel)]="network">
+            <ion-option value="homestead" text-wrap>Main network</ion-option>
+            <ion-option value="rinkeby" text-wrap>Test network</ion-option>
+          </ion-select>
+          <!-- <ion-label color="primary">Login method:</ion-label> -->
+        <ion-select name="method" [(ngModel)]="method">
+          <ion-option value="private" text-wrap>Private key</ion-option>
+          <ion-option value="mnemonic" text-wrap>Mnemonic phrase</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-row justify-content-center>
+        <button ion-button block type="submit" color="my-dark-blue">Log in</button>
+      </ion-row>
   </form>
 </ion-content>

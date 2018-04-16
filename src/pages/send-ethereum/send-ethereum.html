@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="my-dark-blue">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -13,22 +13,22 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="theme">
   <form (ngSubmit)="sendEthereum()">
     <ion-list>
-      <ion-item>
+      <ion-item color="my-blue">
         <ion-input type="text" placeholder="Receiver wallet address" name="receiver" [(ngModel)]="receiver"></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item color="my-blue">
         <ion-input type="text" placeholder="Amount (ETH)" name="amount" [(ngModel)]="amount"></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item color="my-blue">
         <ion-input type="text" placeholder="Gas limit (Gas)" name="amount" [(ngModel)]="gasLimit"></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item color="my-blue">
         <ion-input type="text" placeholder="Gas price (Gwei)" name="amount" [(ngModel)]="gasPrice"></ion-input>
       </ion-item>
     </ion-list>
-    <button ion-button block [disabled]="sending == true" type="submit">Send</button>
+    <button color="my-dark-blue" ion-button block [disabled]="sending == true" type="submit">Send</button>
   </form>
 </ion-content>
