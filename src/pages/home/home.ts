@@ -26,10 +26,12 @@ export class HomePage {
     this.transactions = [];
     wallet.provider.getHistory(this.walletAddress).then((history) => {
       console.log(history);
-      this.transactions = history;
+      this.transactions = history.reverse();
       this.transactions.forEach((transaction) => {
         transaction.value = Ethereum.utils.formatEther(transaction.value);
       });
+    }, (error) => {
+      console.log(error);
     });
   }
 }

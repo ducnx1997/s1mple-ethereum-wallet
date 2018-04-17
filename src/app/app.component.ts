@@ -14,6 +14,7 @@ import { PriceChartPage } from '../pages/price-chart/price-chart';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
+  pageId: number;
   rootPage: any;
   pages: Array<{title: string, component: any}>;
 
@@ -22,11 +23,13 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Send Ethereum', component: SendEthereumPage },
-      { title: 'Price chart', component: PriceChartPage },
-      { title: 'Logout', component: InitPage }
+      { idx: 0, title: 'Home', component: HomePage },
+      { idx: 1, title: 'Send Ethereum', component: SendEthereumPage },
+      { idx: 2, title: 'Price chart', component: PriceChartPage },
+      { idx: 3, title: 'Logout', component: InitPage }
     ];
+
+    this.pageId = 0;
 
     if (!this.walletInitialized()) {
       this.rootPage = InitPage;
@@ -46,7 +49,13 @@ export class MyApp {
 
   openPage(page) {
     // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
+    // we wouldn't want the back button to show in this 
+    if (page.idx === 3) {
+      this.pageId = 0;
+    } else {
+      this.pageId = page.idx;
+    }
+    
     this.nav.setRoot(page.component);
   }
 
