@@ -17,21 +17,18 @@ export class HomePage {
 
   ionViewDidLoad() {
     this.walletBalance = null;
-    var wallet = new Ethereum.Wallet(localStorage.getItem('wallet'));
-    this.walletAddress = wallet.address;
-    wallet.provider = new Ethereum.providers.EtherscanProvider(localStorage.getItem('network'));
-    wallet.getBalance().then((balance) => {
+    this.walletAddress = localStorage.getItem('address');
+    var provider = new Ethereum.providers.EtherscanProvider(localStorage.getItem('network'));
+    provider.getBalance(this.walletAddress).then((balance) => {
       this.walletBalance = Ethereum.utils.formatEther(balance);
     });
     this.transactions = [];
-    wallet.provider.getHistory(this.walletAddress).then((history) => {
+    provider.getHistory(this.walletAddress).then((history) => {
       console.log(history);
       this.transactions = history.reverse();
       this.transactions.forEach((transaction) => {
         transaction.value = Ethereum.utils.formatEther(transaction.value);
       });
-    }, (error) => {
-      console.log(error);
     });
   }
 }

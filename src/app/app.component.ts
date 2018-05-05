@@ -16,7 +16,7 @@ export class MyApp {
 
   pageId: number;
   rootPage: any;
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{idx: number, title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();

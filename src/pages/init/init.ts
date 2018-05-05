@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
 
 import * as Ethereum from 'ethers';
+import * as CryptoJS from 'crypto-js';
 
 /**
  * Generated class for the InitPage page.
@@ -24,7 +25,8 @@ export class InitPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController,
+              public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -36,24 +38,60 @@ export class InitPage {
   }
 
   initializeWallet() {
-    try {
-      if (this.method === 'private') {
-        new Ethereum.Wallet(this.loginData);
-        localStorage.setItem('wallet', this.loginData);
-      } else if (this.method === 'mnemonic') {
-        var wallet = Ethereum.Wallet.fromMnemonic(this.loginData);
-        localStorage.setItem('wallet', wallet.privateKey);
-      }
+    var alert = this.alertCtrl.create({
+      title: 'Set password',
+      subTitle: 'Password must be at least 6 characters long',
+      inputs: [
+        {
+          name: 'password',
+          type: 'password'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+          }
+        },
+        {
+          text: 'OK',
+          handler: data => {
+            if (data.password.length < 6) {
+              this.toastCtrl.create({
+                message: 'Password is too short!',
+                duration: 3000,
+                position: 'top'
+              }).present();
 
-      localStorage.setItem('network', this.network);
-      this.navCtrl.setRoot(HomePage);
-    } catch (e) {
-      console.log(e);
-      this.toastCtrl.create({
-        message: 'Error: ' + e.message,
-        duration: 3000,
-        position: 'top'
-      }).present();
-    }
+              return false;
+            }
+
+            try {
+              var wallet;
+        
+              if (this.method === 'private') {
+                wallet = new Ethereum.Wallet(this.loginData);
+              } else if (this.method === 'mnemonic') {
+                wallet = Ethereum.Wallet.fromMnemonic(this.loginData);
+              }
+        
+              localStorage.setItem('wallet', CryptoJS.AES.encrypt(wallet.privateKey, data.password).toString());
+              localStorage.setItem('address', wallet.address);
+              localStorage.setItem('network', this.network);
+              this.navCtrl.setRoot(HomePage);
+            } catch (e) {
+              console.log(e);
+              this.toastCtrl.create({
+                message: 'Error: ' + e.message,
+                duration: 3000,
+                position: 'top'
+              }).present();
+            }
+          }
+        }
+      ]
+    });
+
+    alert.present();
   }
 }
