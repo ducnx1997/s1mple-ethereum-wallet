@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
+import { TransactionInfoPage } from '../transaction-info/transaction-info'
 
 import * as Ethereum from 'ethers';
 
@@ -12,7 +13,8 @@ export class HomePage {
   walletBalance: string;
   transactions: any;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,
+              public toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -22,7 +24,7 @@ export class HomePage {
     provider.getBalance(this.walletAddress).then((balance) => {
       this.walletBalance = Ethereum.utils.formatEther(balance);
     });
-    this.transactions = [];
+    this.transactions = null;
     provider.getHistory(this.walletAddress).then((history) => {
       console.log(history);
       this.transactions = history.reverse();
@@ -30,5 +32,9 @@ export class HomePage {
         transaction.value = Ethereum.utils.formatEther(transaction.value);
       });
     });
+  }
+
+  viewTxDetails(transaction) {
+    this.navCtrl.push(TransactionInfoPage, { transaction: transaction });
   }
 }

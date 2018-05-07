@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { SendEthereumPage } from '../pages/send-ethereum/send-ethereum';
 import { InitPage } from '../pages/init/init';
 import { PriceChartPage } from '../pages/price-chart/price-chart';
+import { TransactionInfoPage } from '../pages/transaction-info/transaction-info'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomePage,
     SendEthereumPage,
     InitPage,
-    PriceChartPage
+    PriceChartPage,
+    TransactionInfoPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomePage,
     SendEthereumPage,
     InitPage,
-    PriceChartPage
+    PriceChartPage,
+    TransactionInfoPage
   ],
   providers: [
     StatusBar,

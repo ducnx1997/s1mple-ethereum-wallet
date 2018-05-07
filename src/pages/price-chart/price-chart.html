@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar color="my-dark-blue">
+  <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -15,30 +15,33 @@
 </ion-header>
 
 
-<ion-content padding class="theme">
-  <ion-card>
-    <ion-card-header text-center style="color:white">1 ETH =</ion-card-header>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-4><ion-spinner *ngIf="price['USD'] == null"></ion-spinner>{{ price['USD'] }} USD</ion-col>
-          <ion-col col-4><ion-spinner *ngIf="price['BTC'] == null"></ion-spinner>{{ price['BTC'] }} BTC</ion-col>
-          <ion-col col-4><ion-spinner *ngIf="price['EUR'] == null"></ion-spinner>{{ price['EUR'] }} EUR</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
+<ion-content padding>
+  <ion-item-group>
+    <ion-item-divider>ETH price</ion-item-divider>
+    <ion-item>
+      <ion-icon item-start name="logo-usd"></ion-icon>
+      <ion-spinner *ngIf="price['USD'] == null"></ion-spinner>{{ price['USD'] }}
+    </ion-item>  
+    <ion-item>
+      <ion-icon item-start name="logo-bitcoin"></ion-icon>
+      <ion-spinner *ngIf="price['BTC'] == null"></ion-spinner>{{ price['BTC'] }}
+    </ion-item>  
+    <ion-item>
+      <ion-icon item-start name="logo-euro"></ion-icon>
+      <ion-spinner *ngIf="price['EUR'] == null"></ion-spinner>{{ price['EUR'] }}
+    </ion-item>
+  </ion-item-group>
   <ion-card>
     <ion-card-content>
       <canvas #lineCanvas></canvas>
     </ion-card-content>
   </ion-card>
   <ion-card>
-      <ion-card-content>
-        <ion-row>
-          <ion-col col-6>Highest: {{ highestPrice }}</ion-col>
-          <ion-col col-6>Lowest: {{ lowestPrice }}</ion-col>
-        </ion-row>
-      </ion-card-content>
+    <ion-card-content>
+      <ion-row>
+        <ion-col col-6>Highest: {{ highestPrice }}</ion-col>
+        <ion-col col-6>Lowest: {{ lowestPrice }}</ion-col>
+      </ion-row>
+    </ion-card-content>
   </ion-card>
 </ion-content>

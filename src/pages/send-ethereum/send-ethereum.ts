@@ -82,7 +82,7 @@ export class SendEthereumPage {
               console.log(tx);
               this.sending = false;
               this.toastCtrl.create({
-                message: 'Transaction sent! Hash: ' + tx.hash,
+                message: 'Transaction sent!',
                 duration: 3000,
                 position: 'top'
               }).present();

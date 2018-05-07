@@ -1,13 +1,13 @@
 <ion-menu [content]="content">
   <ion-header>
-    <ion-toolbar color="my-dark-blue">
+    <ion-toolbar>
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content class="theme">
-    <ion-list class="zero-margin">
-      <button no-lines color="{{ i === pageId ? 'my-blue' : 'my-dark-blue' }}" menuClose ion-item *ngFor="let p of pages; let i = index;" (click)="openPage(p)">
+  <ion-content>
+    <ion-list>
+      <button no-lines menuClose ion-item *ngFor="let p of pages; let i = index;" (click)="openPage(p)">
         {{p.title}}
       </button>
     </ion-list>
