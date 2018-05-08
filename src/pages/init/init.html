@@ -5,33 +5,31 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar color="my-dark-blue">
+  <ion-navbar>
     <ion-title>Ethereum Wallet</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="theme" >
+<ion-content padding>
   <img src="assets/imgs/ETHEREUM-ICON_Black_small.png">
   <form (ngSubmit)="initializeWallet()">
-      <ion-item color="my-blue">
+      <ion-item>
         <ion-input type="text" placeholder="{{method === 'private' ? 'Wallet private key' : 'Mnemonic phrase'}}" name="loginData" [(ngModel)]="loginData"></ion-input>
       </ion-item>
-      <ion-item no-lines color="my-blue">
-          <!-- <ion-label color="primary">Network:</ion-label> -->
+      <ion-item no-lines>
         <ion-select name="network" [(ngModel)]="network">
             <ion-option value="homestead" text-wrap>Main network</ion-option>
             <ion-option value="ropsten" text-wrap>Test network (Ropsten)</ion-option>
             <ion-option value="kovan" text-wrap>Test network (Kovan)</ion-option>
             <ion-option value="rinkeby" text-wrap>Test network (Rinkeby)</ion-option>
           </ion-select>
-          <!-- <ion-label color="primary">Login method:</ion-label> -->
         <ion-select name="method" [(ngModel)]="method">
           <ion-option value="private" text-wrap>Private key</ion-option>
           <ion-option value="mnemonic" text-wrap>Mnemonic phrase</ion-option>
         </ion-select>
       </ion-item>
       <ion-row justify-content-center>
-        <button ion-button block type="submit" color="my-dark-blue">Log in</button>
+        <button ion-button block type="submit">Log in</button>
       </ion-row>
   </form>
 </ion-content>
